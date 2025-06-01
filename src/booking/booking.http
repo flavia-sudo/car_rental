@@ -1,0 +1,15 @@
+### Test Route
+GET http://localhost:3000
+
+### Create a Booking
+POST http://localhost:3000/booking
+Content-Type: application/json
+
+{
+    "carId": 2,
+    "customerId": 2,
+    "rentalStartDate": "2022-09-06",
+    "rentalEndDate": "2022-09-10",
+    "totalAmount": "90.00"
+
+}

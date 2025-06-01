@@ -1,0 +1,15 @@
+### Test Route
+GET http://localhost:3000
+
+### Create a User
+POST http://localhost:3000/customer
+Content-Type: application/json
+
+{
+    "firstName": "test",
+    "lastName": "test",
+    "email": "test@gmail.com",
+    "phoneNumber": 123456789,
+    "address": "fsdfdsgdfdg",
+    "password": "mypassword123"
+}

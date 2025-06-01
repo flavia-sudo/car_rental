@@ -1,0 +1,13 @@
+### Test Route
+GET http://localhost:3000
+
+### Create a payment
+POST http://localhost:3000/payment
+Content-Type: application/json
+
+{
+    "bookingId": 1,
+    "paymentDate": "2023-10-01",
+    "amount": 150.00,
+    "paymentMethod": "Credit Card"
+}

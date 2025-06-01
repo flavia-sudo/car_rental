@@ -1,0 +1,14 @@
+### Test Route
+GET http://localhost:3000
+
+### Create a reservation
+POST http://localhost:3000/reservation
+Content-Type: application/json
+
+{
+    "customerId": 5,
+    "carId": 6,
+    "reservationDate": "2023-10-01",
+    "pickupDate": "2023-10-10",
+    "returnDate": "2023-10-20"
+}

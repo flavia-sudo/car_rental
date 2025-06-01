@@ -1,0 +1,62 @@
+//routing
+import { Express, Response, Request, NextFunction } from 'express';
+import { createBookingController, deleteBookingController, getBookingByIdController, getBookingController, updateBookingController } from './booking.controller';
+
+
+const booking = (app: Express) => {
+    //create booking
+    app.route('/booking').post(
+        async (req:Request, res:Response, next:NextFunction) =>{
+            try {
+                await createBookingController(req, res)
+            }catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    //get all booking
+    app.route('/booking_all').get(
+        async (req:Request, res:Response, next:NextFunction) => {
+            try {
+                await getBookingController(req, res)
+            }catch (error){
+                next(error)
+            }
+        }
+    )
+    //get booking by id
+    app.route('/booking/:bookingId').get(
+        async (req:Request, res:Response, next:NextFunction) => {
+            try {
+                await getBookingByIdController(req, res)
+            }catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    //update booking by id
+    app.route('/booking/:bookingId').put(
+        async (req: Request, res:Response, next:NextFunction) => {
+            try {
+                await updateBookingController(req, res)
+            } catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    //delete booking by id 
+    app.route('/booking/:bookingId').delete(
+        async (req:Request, res:Response, next:NextFunction) => {
+            try {
+                await deleteBookingController(req, res)
+            }catch (error) {
+                next(error)
+            }
+        }
+    )
+
+}
+export default booking;

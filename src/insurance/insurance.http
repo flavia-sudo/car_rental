@@ -1,0 +1,14 @@
+### Test Route
+GET http://localhost:3000
+
+### Create a Insurance
+POST http://localhost:3000/insurance
+Content-Type: application/json
+
+{
+    "carId": 2,
+    "insuranceProvider": "Britam",
+    "policyNumber": "65789",
+    "startDate": "2022-09-06",
+    "endDate": "2022-09-10"
+}

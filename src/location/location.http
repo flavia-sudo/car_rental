@@ -1,0 +1,12 @@
+### Test Route
+GET http://localhost:3000
+
+### Create a Location
+POST http://localhost:3000/location
+Content-Type: application/json
+
+{
+    "locationName": "Nyeri",
+    "address": "65789",
+    "contactNumber": "09765433",
+}

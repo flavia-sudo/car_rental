@@ -1,0 +1,14 @@
+### Test Route
+GET http://localhost:3000
+
+### Create a Car
+POST http://localhost:3000/car
+Content-Type: application/json
+
+{
+    "carModel": "Toyota Fielder",
+    "year": "2020-10-20",
+    "color": "silver",
+    "rentalRate": "55.00",
+    "availability": true
+}

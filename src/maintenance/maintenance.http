@@ -1,0 +1,13 @@
+### Test Route
+GET http://localhost:3000
+
+### Create a Maintenance
+POST http://localhost:3000/maintenance
+Content-Type: application/json
+
+{
+    "carId": 6,
+    "maintenanceDate": "2023-10-01",
+    "description": "Oil change and tire rotation",
+    "cost": 150.00,
+}
