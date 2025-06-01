@@ -66,7 +66,6 @@ export const PaymentTable = pgTable("payment", {
 });
 
 // Maintenance Table
-//
 export const MaintenanceTable = pgTable("maintenance", {
     maintenanceId: serial("MaintenanceID").primaryKey(),
     carId: integer("CarID").notNull().references(() => CarTable.carId, { onDelete: "cascade" }),
