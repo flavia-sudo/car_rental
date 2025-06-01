@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { loginUserController, registerUserController } from "./auth.controller";
+import { registerUserController } from "./auth.controller";
 
 const user = (app: Express) => {
     // register user route
@@ -14,15 +14,15 @@ const user = (app: Express) => {
     )
 
     // login user route
-    app.route("/auth/login").post(
-        async (req, res, next) => {
-            try {
-                await loginUserController(req, res);
-            } catch (error: any) {
-                next(error); // Passes the error to the next middleware                
-            }
-        }
-    )
+//     app.route("/auth/login").post(
+//         async (req, res, next) => {
+//             try {
+//                 await loginUserController(req, res);
+//             } catch (error: any) {
+//                 next(error); // Passes the error to the next middleware                
+//             }
+//         }
+//     )
 }
 
 export default user;

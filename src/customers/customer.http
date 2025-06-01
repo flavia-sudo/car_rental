@@ -2,7 +2,7 @@
 GET http://localhost:3000
 
 ### Create a User
-POST http://localhost:3000/customer
+POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
@@ -11,5 +11,14 @@ Content-Type: application/json
     "email": "test@gmail.com",
     "phoneNumber": 123456789,
     "address": "fsdfdsgdfdg",
+    "password": "mypassword123"
+}
+
+### Login a User
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
     "password": "mypassword123"
 }

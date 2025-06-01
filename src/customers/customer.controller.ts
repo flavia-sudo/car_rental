@@ -1,24 +1,24 @@
 import { Request, Response } from "express";
-import { createCustomerService, deleteCustomerService, getCustomerByIdService, getCustomerService, updateCustomerService } from "./customer.service";
+import { deleteCustomerService, getCustomerByIdService, getCustomerService, updateCustomerService } from "./customer.service";
 
 
 // Create a customer controller
-export const createCustomerController = async (req: Request, res: Response) => {
-    try{
-        const customer = req.body;
-        const newCustomer = await createCustomerService(customer);
-        if (newCustomer) {
-            res.status(201).json({
-                message: "Customer created successfully",
-            });
-        } else {
-            res.status(400).json({
-                message: "Failed to create customer"});
-        }
-    }catch (error: any) {
-        return res.status(500).json({ error: error.message});
-    }
-}
+// export const createCustomerController = async (req: Request, res: Response) => {
+//     try{
+//         const customer = req.body;
+//         const newCustomer = await createCustomerService(customer);
+//         if (newCustomer) {
+//             res.status(201).json({
+//                 message: "Customer created successfully",
+//             });
+//         } else {
+//             res.status(400).json({
+//                 message: "Failed to create customer"});
+//         }
+//     }catch (error: any) {
+//         return res.status(500).json({ error: error.message});
+//     }
+// }
 
 //get all customers controller
 export const getCustomerController = async (req: Request, res: Response) => {

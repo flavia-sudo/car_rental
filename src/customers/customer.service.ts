@@ -5,13 +5,13 @@ import { CustomerTable, TICustomer } from "../drizzle/schema";
 
 
 //create a customer service
-export const createCustomerService = async (customer: TICustomer) => {
-    const [inserted] = await db.insert(CustomerTable).values(customer).returning();
-    if (inserted) {
-        return inserted;
-    }
-    return null;
-}
+// export const createCustomerService = async (customer: TICustomer) => {
+//     const [inserted] = await db.insert(CustomerTable).values(customer).returning();
+//     if (inserted) {
+//         return inserted;
+//     }
+//     return null;
+// }
 
 // get all customers
 export const getCustomerService = async () => {
@@ -26,6 +26,8 @@ export const getCustomerByIdService = async (customerID: number) => {
     });
     return customer;
 }
+
+// get customer by email
 
 // update customer by id
 export const updateCustomerService = async (customerID: number, customer: TICustomer) => {

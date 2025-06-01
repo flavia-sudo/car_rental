@@ -1,5 +1,4 @@
 import express from "express";
-import customer from "./customers/customer.router";
 import car from "./cars/car.router";
 import insurance from "./insurance/insurance.router";
 import location from "./location/location.router";
@@ -7,6 +6,8 @@ import booking from "./booking/booking.router";
 import maintenance from "./maintenance/maintenance.router";
 import payment from "./payment/payment.router";
 import reservation from "./reservations/reservation.router";
+import customer from "./customers/customer.router";
+import user from "./auth/auth.router";
 
 //initialize the app and give access to the application to use express
 const app = express()
@@ -23,6 +24,7 @@ booking(app);
 maintenance(app);
 payment(app);
 reservation(app);
+user(app);
 
 app.get('/', (req, res) => {
    res.send('Welcome to the Car Rental API');
