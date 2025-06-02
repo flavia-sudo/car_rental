@@ -14,7 +14,9 @@ export const CustomerTable = pgTable("customer", {
     phoneNumber: text("PhoneNumber"),
     address: varchar("Address", { length: 255 }),
     password: varchar("Password", { length: 255 }).notNull(), // Store hashed passwords
-    role: boolean("role").default(false).notNull() // Enum for user roles
+    role: boolean("role").default(false).notNull(), // Enum for user roles
+    verificationCode: varchar("verification_code", {length: 10}),
+    verified: boolean("verified").default(false)
 });
 
 // Location Table

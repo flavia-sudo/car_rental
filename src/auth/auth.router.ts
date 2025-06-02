@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { loginUserController, registerUserController } from "./auth.controller";
+import { loginUserController, registerUserController, verifyCodeController } from "./auth.controller";
 
 const user = (app: Express) => {
     // register user route
@@ -23,6 +23,8 @@ const user = (app: Express) => {
             }
         }
     )
+
+    app.route("/auth/verify").post(verifyCodeController);
 }
 
 export default user;
