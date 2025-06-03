@@ -33,7 +33,7 @@ export const getReservationController = async (req: Request, res: Response) => {
 export const getReservationByIdController = async (req: Request, res: Response) => {
     try {
         const reservationId = parseInt(req.params.reservationId);
-        if (isNaN(reservationId)) {
+        if (isNaN(reservationId) || !reservationId) {
             return res.status(400).json({ error: "Invalid reservation ID" });
         }
         const reservation = await getReservationByIdService(reservationId);
