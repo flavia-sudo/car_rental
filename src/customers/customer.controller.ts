@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { createCustomerService, deleteCustomerService, getCustomerByIdService, getCustomerService, updateCustomerService } from "./customer.service";
 import { sendWelcomeEmail } from "../email/email.service";
-
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs"
 
 // Create a customer controller
 export const createCustomerController = async (req: Request, res: Response) => {
@@ -57,8 +58,22 @@ export const updateCustomerController = async (req: Request, res: Response) => {
             return res.status(400).json({ error: "Invalid customer ID" });
         }
         const customer = req.body;
+        const password = customer.password
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            customer.password = hashedPassword;
+            console.log("Password after hashing:", customer.password);
+        }
+
+        const token = jwt.sign({ customerId: customerId }, process.env.JWT_SECRET as string, {
+            expiresIn: '1d'})
+
         await updateCustomerService(customerId, customer);
-        return res.status(200).json({ message: "Customer updated successfully" });
+        return res.status(200).json({ 
+            message: "Customer updated successfully",
+            customer,
+            token
+        });
     } catch (error: any) {
         return res.status(500).json({ error: error.message });
     }

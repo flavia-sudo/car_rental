@@ -12,3 +12,7 @@ Content-Type: application/json
     "pickupDate": "2023-10-10",
     "returnDate": "2023-10-20"
 }
+
+### get all reservations
+GET http://localhost:3000/reservation_all
+

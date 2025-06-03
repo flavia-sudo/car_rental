@@ -16,33 +16,38 @@ export const createUserService = async (customer: Omit <TICustomer, "customerId"
         ...customer,
         password: hashedPassword,
         role: customer.role || false,
-        verificationCode
+        verificationCode: verificationCode,
+        verified: false,
     };
     const [user] = await db.insert(CustomerTable).values(newCustomer).returning();
-    await sendVerificationEmail(user.email, user.firstName, verificationCode);
-    const token = jwt.sign({customerId:user.customerId, email: user.email}, process.env.JWT_SECRET as string, {
+    if (!user) {
+        throw new Error("Failed to create user");
+    }
+
+
+    const token = jwt.sign({customerId:user.customerId }, process.env.JWT_SECRET as string, {
         expiresIn: '1d'})
+        await sendVerificationEmail(user.email, user.firstName, verificationCode);
+
         await sendWelcomeEmail(user.email, user.firstName);
-    return {
-        message: "User created. Verification email sent", user, token
-        };
+    return { user, token };
     };
 
 // Service to login a user
 export const userLoginService = async (email: string, password: string) => {
   const user = await db.select().from(CustomerTable).where(eq(CustomerTable.email, email)).then((rows) => rows[0]);
-  console.log("User found:", user);
   if (!user) {
     return new Error("Invalid email or password"); 
   }
 const isPasswordValid = await bcrypt.compare(password, user.password);
-  if (!isPasswordValid) {
+
+console.log(password, user.password, isPasswordValid);
+  if (isPasswordValid === false) {
     return new Error("Invalid email or password");
   }
-  const token = jwt.sign({ customerId: user.customerId, email: user.email }, process.env.JWT_SECRET as string, {
+  const token = jwt.sign({ customerId: user.customerId}, process.env.JWT_SECRET as string, {
     expiresIn: '1d'
     });
-    console.log("Token generated:", token);
     return {user, token};
 }
 

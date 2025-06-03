@@ -8,6 +8,8 @@ import payment from "./payment/payment.router";
 import reservation from "./reservations/reservation.router";
 import customer from "./customers/customer.router";
 import user from "./auth/auth.router";
+import dotenv from "dotenv";
+dotenv.config();
 
 //initialize the app and give access to the application to use express
 const app = express()

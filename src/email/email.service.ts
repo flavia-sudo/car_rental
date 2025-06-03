@@ -1,8 +1,11 @@
 import nodemailer from 'nodemailer';
 import 'dotenv/config';
-import customer from '../customers/customer.router';
 
 const createTransporter = () => {
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+        throw new Error("Email credentials not found in environment variables");
+    }
+
     return nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -30,17 +33,15 @@ export const sendVerificationEmail = async (
         `
     });
 };
-export const sendWelcomeEmail = async (
-    customerEmail: string,
-    customerName: string
-) => {
+
+export const sendWelcomeEmail = async (to: string, name: string) => {
     const transporter = createTransporter();
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
-        to: customerEmail,
+        to,
         subject: "Welcome to Car Rental",
         html: `
-        <h3>Hello ${customerName},</h3>
+        <h3>Hello ${name},</h3>
         <p>Welcome to our car rental service! We are excited to have you on board.</p>
         <p>Feel free to explore our services and let us know if you have any questions.</p>
         <p>Best regards,</p>

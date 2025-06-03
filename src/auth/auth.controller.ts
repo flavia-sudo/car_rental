@@ -1,7 +1,5 @@
-import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import { createUserService, userLoginService, verifyCodeService } from './auth.service';
-import jwt from 'jsonwebtoken';
 
 
 // create user controller
@@ -10,12 +8,7 @@ export const registerUserController = async (req: Request, res: Response) => {
         const {user, token} = await createUserService(req.body);
         return res.status(201).json({
             message: "User created successfully",
-            user: {
-                user_id: user.customerId,
-                first_name: user.firstName,
-                last_name: user.lastName,
-                email: user.email
-            },
+            user,
             token
         });
     } catch (error: any) {
@@ -30,10 +23,10 @@ export const loginUserController = async (req: Request, res: Response) => {
             return res.status(400).json({ error: "Email and password are required" });
         }
     try {
-       const { user, token } = await userLoginService(email, password);
+       const { user, token }:any = await userLoginService(email, password);
         return res.status(200).json({
             message: "Login successful",
-            user, token
+            user:user, token:token
         });
     } catch (error: any) {
         return res.status(500).json({ error: error.message });

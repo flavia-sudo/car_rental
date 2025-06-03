@@ -28,7 +28,7 @@ const customer = (app: Express) => {
     //get customer by id
     app.route('/customer/:customerId').get(
        isAuthenticated,
-        isAdmin,
+        // isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getCustomerByIdController(req, res)
