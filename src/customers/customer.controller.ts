@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCustomerService, deleteCustomerService, getCustomerByIdService, getCustomerService, updateCustomerService } from "./customer.service";
+import { createCustomerService, deleteCustomerService, getCustomerBookingsService, getCustomerByIdService, getCustomerReservationsService, getCustomerService, updateCustomerService } from "./customer.service";
 import { sendWelcomeEmail } from "../email/email.service";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs"
@@ -95,6 +95,40 @@ export const deleteCustomerController = async (req: Request, res: Response) => {
         if (deleted) {
             return res.status(204).json({message: "Customer deleted successfully"});
         }return res.status(400).json({message: "Customer not deleted"});
+    }catch (error: any) {
+        return res.status(500).json({error: error.message});
+    }
+}
+
+//get customer with bookings controller
+export const getCustomerBookingsController = async (req: Request, res: Response) => {
+    try {
+        const customerId = parseInt(req.params.customerId);
+        if (isNaN(customerId)) {
+            return res.status(400).json({ error: "Invalid customer ID" });
+        }
+        const customer = await getCustomerBookingsService(customerId);
+        if (customer) {
+            return res.status(200).json(customer);
+        }
+        return res.status(404).json({ error: "Customer not found" });
+    } catch (error: any) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
+// get customer with reservation controller
+export const getCustomerReservationController = async (req: Request, res: Response) => {
+    try {
+        const customerId = parseInt(req.params.customerId);
+        if (isNaN(customerId)) {
+            return res.status(400).json({ error: "Invalid customer ID"});
+        }
+        const customer = await getCustomerReservationsService(customerId);
+        if (customer) {
+            return res.status(200).json(customer);
+        }
+        return res.status(404).json({error: "Customer not found"});
     }catch (error: any) {
         return res.status(500).json({error: error.message});
     }

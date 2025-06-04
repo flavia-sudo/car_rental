@@ -1,6 +1,6 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
-import { createCustomerController, deleteCustomerController, getCustomerByIdController, getCustomerController, updateCustomerController } from './customer.controller';
+import { createCustomerController, deleteCustomerController, getCustomerBookingsController, getCustomerByIdController, getCustomerController, getCustomerReservationController, updateCustomerController } from './customer.controller';
 import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 
 const customer = (app: Express) => {
@@ -27,7 +27,7 @@ const customer = (app: Express) => {
     )
     //get customer by id
     app.route('/customer/:customerId').get(
-       isAuthenticated,
+        isAuthenticated,
         // isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
@@ -54,6 +54,30 @@ const customer = (app: Express) => {
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteCustomerController(req, res)
+            }catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    //get customer bookings
+    app.route('/customer/:customerId/bookings').get(
+        isAuthenticated,
+        async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                await getCustomerBookingsController(req, res)
+            } catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    //get customer reservation
+    app.route('/customer/:customerId/reservation').get(
+        isAuthenticated,
+        async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                await getCustomerReservationController(req, res)
             }catch (error) {
                 next(error)
             }

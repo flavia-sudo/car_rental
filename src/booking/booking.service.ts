@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { BookingsTable, TIBooking } from "../drizzle/schema";
+import { BookingsTable, CarTable, CustomerTable, TIBooking } from "../drizzle/schema";
 import db from "../drizzle/db";
 
 
@@ -14,14 +14,15 @@ export const createBookingService = async (booking: TIBooking) => {
 
 //get all booking
 export const getBookingService = async () => {
-    const booking = await db.query.BookingsTable.findMany();
-    return booking;
+   const booking = await db.query.BookingsTable.findMany();
+   return booking;
 }
 
 //get booking by id
 export const getBookingByIdService = async (bookingId: number) => {
     const booking = await db.query.BookingsTable.findFirst({
         where: eq(BookingsTable.bookingId, bookingId)
+    
     });
     return booking;
 }
