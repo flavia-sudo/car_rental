@@ -1,6 +1,6 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
-import { createCarController, deleteCarController, getCarByIdController, getCarController, updateCarController } from './car.controller';
+import { createCarController, deleteCarController, getCarByIdController, getCarController, getCarWithLocationController, updateCarController } from './car.controller';
 
 const car = (app: Express) => {
     //create car
@@ -51,6 +51,17 @@ const car = (app: Express) => {
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteCarController(req, res)
+            }catch (error) {
+                next(error)
+            }
+        }
+    )
+
+    //get car with location
+    app.route('/car_with_location').get(
+        async (req:Request, res:Response, next:NextFunction) => {
+            try {
+                await getCarWithLocationController(req, res)
             }catch (error) {
                 next(error)
             }

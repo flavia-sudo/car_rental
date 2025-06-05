@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createBookingService, deleteBookingService, getBookingByIdService, getBookingService, updateBookingByIdService } from "./booking.service";
+import { createBookingService, deleteBookingService, getBookingByIdService, getBookingService, getBookingWithPaymentService, updateBookingByIdService } from "./booking.service";
 
 
 
@@ -81,5 +81,15 @@ export const deleteBookingController = async (req: Request, res: Response) => {
         }return res.status(400).json({message: "Booking not deleted"});
     }catch (error: any) {
         return res.status(500).json({error: error.message});
+    }
+}
+
+// get booking with payment controller
+export const getBookingWithPaymentController = async (req: Request, res: Response) => {
+    try {
+        const bookings = await getBookingWithPaymentService();
+        res.status(200).json(bookings);
+    } catch (error: any) {
+        return res.status(500).json({ error: error.message });
     }
 }

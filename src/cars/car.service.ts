@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { CarTable, TICar } from "../drizzle/schema";
+import { CarTable, LocationTable, TICar } from "../drizzle/schema";
 import db from "../drizzle/db";
 
 
@@ -38,4 +38,12 @@ export const deleteCarService = async (carId: number) => {
     await db.delete(CarTable).where(eq(CarTable.carId, carId));
     return "Car deleted successfully";
 
+}
+
+// get car with location service
+export const getCarWithLocationService = async () => {
+    return await db.select() .from(CarTable)
+    .innerJoin(LocationTable as any, eq(LocationTable.locationId, CarTable.locationId))
+    .limit(1)
+    .then((results) => results[0] || null);
 }

@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { BookingsTable, CarTable, CustomerTable, TIBooking } from "../drizzle/schema";
+import { BookingsTable, CarTable, CustomerTable, PaymentTable, TIBooking } from "../drizzle/schema";
 import db from "../drizzle/db";
 
 
@@ -20,11 +20,9 @@ export const getBookingService = async () => {
 
 //get booking by id
 export const getBookingByIdService = async (bookingId: number) => {
-    const booking = await db.query.BookingsTable.findFirst({
-        where: eq(BookingsTable.bookingId, bookingId)
-    
-    });
-    return booking;
+    const result = await db.select().from(BookingsTable)
+        .where(eq(BookingsTable.bookingId, bookingId))
+        return result[0];
 }
 
 //update booking by id
@@ -38,4 +36,14 @@ export const deleteBookingService = async (bookingId: number) => {
     await db.delete(BookingsTable).where(eq(BookingsTable.bookingId, bookingId));
     return "Booking deleted successfully";
 
+}
+
+// get booking with payment service
+export const getBookingWithPaymentService = async () => {
+    return await db.select() .from(BookingsTable)
+    .innerJoin(CustomerTable as any, eq(BookingsTable.customerId, CustomerTable.customerId))
+    .innerJoin(CarTable as any, eq(BookingsTable.carId, CarTable.carId))
+    .innerJoin(PaymentTable as any, eq(PaymentTable.bookingId, BookingsTable.bookingId))
+    .limit(1)
+    .then((results) => results[0] || null);
 }

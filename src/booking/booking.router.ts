@@ -1,6 +1,6 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
-import { createBookingController, deleteBookingController, getBookingByIdController, getBookingController, updateBookingController } from './booking.controller';
+import { createBookingController, deleteBookingController, getBookingByIdController, getBookingController, getBookingWithPaymentController, updateBookingController } from './booking.controller';
 
 
 const booking = (app: Express) => {
@@ -57,6 +57,17 @@ const booking = (app: Express) => {
             }
         }
     )
+
+    //get booking with payment
+    app.route('/booking_with_payment').get(
+        async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                await getBookingWithPaymentController(req, res);
+            } catch (error) {
+                next(error);
+            }
+        }
+    );
 
 }
 export default booking;

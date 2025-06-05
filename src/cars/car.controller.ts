@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCarService, deleteCarService, getCarByIdService, getCarService, updateCarByIdService } from "./car.service";
+import { createCarService, deleteCarService, getCarByIdService, getCarService, getCarWithLocationService, updateCarByIdService } from "./car.service";
 
 
 
@@ -81,5 +81,15 @@ export const deleteCarController = async (req: Request, res: Response) => {
         }return res.status(400).json({message: "Car not deleted"});
     }catch (error: any) {
         return res.status(500).json({error: error.message});
+    }
+}
+
+// get car with location controller
+export const getCarWithLocationController = async (req: Request, res: Response) => {
+    try {
+        const car = await getCarWithLocationService();
+        res.status(200).json(car);
+    } catch (error: any) {
+        return res.status(500).json({ error: error.message });
     }
 }
