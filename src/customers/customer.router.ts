@@ -17,6 +17,7 @@ const customer = (app: Express) => {
 
     //get all customers
     app.route('/customer_all').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getCustomerController(req, res)

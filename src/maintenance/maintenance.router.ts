@@ -1,6 +1,7 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
 import { createMaintenanceController, deleteMaintenanceController, getMaintenanceByIdController, getMaintenanceController, updateMaintenanceController } from './maintenance.controller';
+import { isAuthenticated } from '../middleware/auth.middleware';
 
 
 const maintenance = (app: Express) => {
@@ -17,6 +18,7 @@ const maintenance = (app: Express) => {
 
     //get all maintenance
     app.route('/maintenance_all').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getMaintenanceController(req, res)
@@ -27,6 +29,7 @@ const maintenance = (app: Express) => {
     )
     //get maintenance by id
     app.route('/maintenance/:maintenanceId').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getMaintenanceByIdController(req, res)

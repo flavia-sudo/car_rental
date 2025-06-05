@@ -1,6 +1,7 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
 import { createReservationController, deleteReservationController, getReservationByIdController, getReservationController, updateReservationController } from './reservation.controller';
+import { isAuthenticated } from '../middleware/auth.middleware';
 
 
 const reservation = (app: Express) => {
@@ -17,6 +18,7 @@ const reservation = (app: Express) => {
 
     //get all reservation
     app.route('/reservation_all').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getReservationController(req, res)
@@ -27,6 +29,7 @@ const reservation = (app: Express) => {
     )
     //get reservation by id
     app.route('/reservation/:reservationId').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getReservationByIdController(req, res)

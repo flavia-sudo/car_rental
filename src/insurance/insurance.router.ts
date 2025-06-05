@@ -1,6 +1,7 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
 import { createInsuranceController, deleteInsuranceController, getInsuranceByIdController, getInsuranceController, updateInsuranceController } from './insurance.controller';
+import { isAuthenticated } from '../middleware/auth.middleware';
 
 const insurance = (app: Express) => {
     //create insurance
@@ -16,6 +17,7 @@ const insurance = (app: Express) => {
 
     //get all insurance
     app.route('/insurance_all').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getInsuranceController(req, res)
@@ -26,6 +28,7 @@ const insurance = (app: Express) => {
     )
     //get insurance by id
     app.route('/insurance/:insuranceId').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getInsuranceByIdController(req, res)

@@ -1,6 +1,7 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
 import { createPaymentController, deletePaymentController, getPaymentByIdController, getPaymentController, updatePaymentController } from './payment.controller';
+import { isAuthenticated } from '../middleware/auth.middleware';
 
 const payment = (app: Express) => {
     //create payment
@@ -16,6 +17,7 @@ const payment = (app: Express) => {
 
     //get all payment
     app.route('/payment_all').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getPaymentController(req, res)
@@ -26,6 +28,7 @@ const payment = (app: Express) => {
     )
     //get payment by id
     app.route('/payment/:paymentId').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getPaymentByIdController(req, res)

@@ -1,6 +1,7 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
 import { createCarController, deleteCarController, getCarByIdController, getCarController, getCarWithLocationController, updateCarController } from './car.controller';
+import { isAuthenticated } from '../middleware/auth.middleware';
 
 const car = (app: Express) => {
     //create car
@@ -16,6 +17,7 @@ const car = (app: Express) => {
 
     //get all cars
     app.route('/car').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getCarController(req, res)
@@ -26,6 +28,7 @@ const car = (app: Express) => {
     )
     //get car by id
     app.route('/car/:carId').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getCarByIdController(req, res)

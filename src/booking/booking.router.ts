@@ -1,6 +1,8 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
 import { createBookingController, deleteBookingController, getBookingByIdController, getBookingController, getBookingWithPaymentController, updateBookingController } from './booking.controller';
+import { is } from 'drizzle-orm';
+import { isAuthenticated } from '../middleware/auth.middleware';
 
 
 const booking = (app: Express) => {
@@ -17,6 +19,7 @@ const booking = (app: Express) => {
 
     //get all booking
     app.route('/booking_all').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getBookingController(req, res)
@@ -27,6 +30,7 @@ const booking = (app: Express) => {
     )
     //get booking by id
     app.route('/booking/:bookingId').get(
+        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getBookingByIdController(req, res)
