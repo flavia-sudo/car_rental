@@ -2,6 +2,7 @@
 import { Express, Response, Request, NextFunction } from 'express';
 import { createCustomerController, deleteCustomerController, getCustomerBookingsController, getCustomerByIdController, getCustomerController, getCustomerReservationController, updateCustomerController } from './customer.controller';
 import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
+import { is } from 'drizzle-orm';
 
 const customer = (app: Express) => {
     //create customer
@@ -14,10 +15,11 @@ const customer = (app: Express) => {
             }
         }
     )
-
+    // admin only
     //get all customers
     app.route('/customer_all').get(
         isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getCustomerController(req, res)
@@ -29,7 +31,8 @@ const customer = (app: Express) => {
     //get customer by id
     app.route('/customer/:customerId').get(
         isAuthenticated,
-        // isAdmin,
+        // Middleware to check if the user is an admin
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getCustomerByIdController(req, res)
@@ -41,6 +44,7 @@ const customer = (app: Express) => {
 
     //update customer by id
     app.route('/customer/:customerId').put(
+        isAuthenticated,
         async (req: Request, res:Response, next:NextFunction) => {
             try {
                 await updateCustomerController(req, res)
@@ -52,6 +56,8 @@ const customer = (app: Express) => {
 
     //delete customer by id 
     app.route('/customer/:customerId').delete(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteCustomerController(req, res)
@@ -63,7 +69,6 @@ const customer = (app: Express) => {
 
     //get customer bookings
     app.route('/customer/:customerId/bookings').get(
-        isAuthenticated,
         async (req: Request, res: Response, next: NextFunction) => {
             try {
                 await getCustomerBookingsController(req, res)
@@ -75,7 +80,6 @@ const customer = (app: Express) => {
 
     //get customer reservation
     app.route('/customer/:customerId/reservation').get(
-        isAuthenticated,
         async (req: Request, res: Response, next: NextFunction) => {
             try {
                 await getCustomerReservationController(req, res)
