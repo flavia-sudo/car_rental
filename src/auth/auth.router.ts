@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { loginUserController, registerUserController, verifyCodeController } from "./auth.controller";
+import { createAdminController, loginUserController, registerUserController, verifyCodeController } from "./auth.controller";
 
 const user = (app: Express) => {
     // register user route
@@ -8,7 +8,18 @@ const user = (app: Express) => {
             try {
                 await registerUserController(req, res);
             } catch (error: any) {
-                next(error); //means that if an error occurs, it will be passed to the next middleware, which in this case is the error handler
+                next(error); //means that if an error occurs, it will be passed to the next middleware
+            }
+        }
+    )
+
+    // create admin route
+    app.route("/auth/admin/create").post(
+        async (req, res, next) => {
+            try {
+                await createAdminController(req, res);
+            } catch (error: any) {
+                next(error);
             }
         }
     )

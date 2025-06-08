@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createUserService, userLoginService, verifyCodeService } from './auth.service';
+import { createAdminService, createUserService, userLoginService, verifyCodeService } from './auth.service';
 
 
 // create user controller
@@ -12,6 +12,27 @@ export const registerUserController = async (req: Request, res: Response) => {
             token
         });
     } catch (error: any) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
+// create admin controller
+export const createAdminController = async (req: Request, res: Response) => {
+    try {
+        const adminData = req.body;
+        const { admin, token } = await createAdminService(adminData);
+        res.status(201).json({
+            message: "Admin created successfully",
+            admin: {
+                customerId: admin.customerId,
+                firstName: admin.firstName,
+                lastName: admin.lastName,
+                email: admin.email,
+                role: admin.role
+            },
+            token
+        }); 
+    }catch (error: any) {
         return res.status(500).json({ error: error.message });
     }
 }

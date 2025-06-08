@@ -1,7 +1,7 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
 import { createMaintenanceController, deleteMaintenanceController, getMaintenanceByIdController, getMaintenanceController, updateMaintenanceController } from './maintenance.controller';
-import { isAuthenticated } from '../middleware/auth.middleware';
+import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 
 
 const maintenance = (app: Express) => {
@@ -19,6 +19,7 @@ const maintenance = (app: Express) => {
     //get all maintenance
     app.route('/maintenance_all').get(
         isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getMaintenanceController(req, res)

@@ -1,6 +1,7 @@
 //routing
 import { Express, Response, Request, NextFunction } from 'express';
 import { createLocationController, deleteLocationController, getLocationByIdController, getLocationController, updateLocationController } from './location.controller';
+import { isAdmin, isAuthenticated } from '../middleware/auth.middleware';
 
 const location = (app: Express) => {
     //create location
@@ -16,6 +17,8 @@ const location = (app: Express) => {
 
     //get all location
     app.route('/location_all').get(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getLocationController(req, res)

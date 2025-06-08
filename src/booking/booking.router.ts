@@ -31,7 +31,6 @@ const booking = (app: Express) => {
     )
     //get booking by id
     app.route('/booking/:bookingId').get(
-        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getBookingByIdController(req, res)

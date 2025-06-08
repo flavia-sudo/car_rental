@@ -30,6 +30,7 @@ const car = (app: Express) => {
     //get car by id
     app.route('/car/:carId').get(
         isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getCarByIdController(req, res)
@@ -52,6 +53,8 @@ const car = (app: Express) => {
 
     //delete car by id 
     app.route('/car/:carId').delete(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteCarController(req, res)

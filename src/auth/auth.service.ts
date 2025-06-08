@@ -1,4 +1,4 @@
-import { and, eq, sql } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { CustomerTable, TICustomer, TSCustomer } from "../drizzle/schema";
 import db from "../drizzle/db";
 import bcrypt from "bcryptjs";
@@ -32,6 +32,30 @@ export const createUserService = async (customer: Omit <TICustomer, "customerId"
         await sendWelcomeEmail(user.email, user.firstName);
     return { user, token };
     };
+
+// service to create an admin user
+export const createAdminService = async (adminData: Omit<TICustomer, "customerId" |'role' |'verified' |'verificationCode'>) => {
+  const hashedPassword = await bcrypt.hash(adminData.password, 10);
+  // Generates random 6-digit code
+  const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();  
+  const newAdmin: TICustomer = {
+        ...adminData,
+        password: hashedPassword,
+        role: true,
+        verified: false,
+        verificationCode: verificationCode
+    };
+    const [admin] = await db.insert(CustomerTable).values(newAdmin).returning();
+    if (!admin) {
+        throw new Error("Failed to create admin user");
+    }
+    const token = jwt.sign({ customerId: admin.customerId, role: admin.role }, process.env.JWT_SECRET as string, {
+        expiresIn: '1d'
+    });
+    await sendVerificationEmail(admin.email, admin.firstName, verificationCode);
+    await sendWelcomeEmail(admin.email, admin.firstName);
+    return { admin, token };
+}
 
 // Service to login a user
 export const userLoginService = async (email: string, password: string) => {

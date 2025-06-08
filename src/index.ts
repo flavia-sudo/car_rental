@@ -7,15 +7,16 @@ import maintenance from "./maintenance/maintenance.router";
 import payment from "./payment/payment.router";
 import reservation from "./reservations/reservation.router";
 import customer from "./customers/customer.router";
-import user from "./auth/auth.router";
 import dotenv from "dotenv";
+import user from "./auth/auth.router";
 dotenv.config();
 
 //initialize the app and give access to the application to use express
-const app = express()
+const app = express();
 
 //middleware to parse JSON bodies
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //routes
 customer(app);
