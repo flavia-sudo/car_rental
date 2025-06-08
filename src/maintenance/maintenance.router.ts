@@ -30,7 +30,6 @@ const maintenance = (app: Express) => {
     )
     //get maintenance by id
     app.route('/maintenance/:maintenanceId').get(
-        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getMaintenanceByIdController(req, res)

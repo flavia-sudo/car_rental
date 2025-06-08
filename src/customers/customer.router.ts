@@ -44,7 +44,6 @@ const customer = (app: Express) => {
 
     //update customer by id
     app.route('/customer/:customerId').put(
-        isAuthenticated,
         async (req: Request, res:Response, next:NextFunction) => {
             try {
                 await updateCustomerController(req, res)

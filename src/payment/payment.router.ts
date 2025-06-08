@@ -29,7 +29,6 @@ const payment = (app: Express) => {
     )
     //get payment by id
     app.route('/payment/:paymentId').get(
-        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getPaymentByIdController(req, res)

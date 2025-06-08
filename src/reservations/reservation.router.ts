@@ -30,7 +30,6 @@ const reservation = (app: Express) => {
     )
     //get reservation by id
     app.route('/reservation/:reservationId').get(
-        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getReservationByIdController(req, res)

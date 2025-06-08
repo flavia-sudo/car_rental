@@ -29,7 +29,6 @@ const insurance = (app: Express) => {
     )
     //get insurance by id
     app.route('/insurance/:insuranceId').get(
-        isAuthenticated,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getInsuranceByIdController(req, res)
