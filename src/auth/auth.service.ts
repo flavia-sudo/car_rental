@@ -42,7 +42,7 @@ export const createAdminService = async (adminData: Omit<TICustomer, "customerId
         ...adminData,
         password: hashedPassword,
         role: true,
-        verified: false,
+        verified: true, // Admins are verified by default
         verificationCode: verificationCode
     };
     const [admin] = await db.insert(CustomerTable).values(newAdmin).returning();

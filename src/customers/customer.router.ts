@@ -55,8 +55,8 @@ const customer = (app: Express) => {
 
     //delete customer by id 
     app.route('/customer/:customerId').delete(
-        isAuthenticated,
-        isAdmin,
+       // isAuthenticated,
+        //isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteCustomerController(req, res)
