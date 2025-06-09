@@ -31,6 +31,8 @@ const booking = (app: Express) => {
     )
     //get booking by id
     app.route('/booking/:bookingId').get(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await getBookingByIdController(req, res)
@@ -53,6 +55,8 @@ const booking = (app: Express) => {
 
     //delete booking by id 
     app.route('/booking/:bookingId').delete(
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteBookingController(req, res)

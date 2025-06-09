@@ -31,7 +31,6 @@ const customer = (app: Express) => {
     //get customer by id
     app.route('/customer/:customerId').get(
         isAuthenticated,
-        // Middleware to check if the user is an admin
         isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
@@ -55,8 +54,8 @@ const customer = (app: Express) => {
 
     //delete customer by id 
     app.route('/customer/:customerId').delete(
-       // isAuthenticated,
-        //isAdmin,
+        isAuthenticated,
+        isAdmin,
         async (req:Request, res:Response, next:NextFunction) => {
             try {
                 await deleteCustomerController(req, res)

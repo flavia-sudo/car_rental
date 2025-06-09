@@ -10,28 +10,35 @@ export const isAuthenticated = async (req: Request, res: Response, next: NextFun
         res.status(401).json({ error: 'Unauthorized access' });
         return;
     }
+
     const token = authHeader.split(' ')[1];
+
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { customerId: string };
+        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as any;
+
         const user = await db.query.CustomerTable.findFirst({
-            where: eq(CustomerTable.customerId, Number(decoded.customerId))
+            where: eq(CustomerTable.customerId, decoded.customerId)
         });
+
         if (!user) {
             res.status(401).json({ error: 'User not found' });
             return;
         }
+
         (req as any).user = user;
-        next(); // Proceed to the next middleware or route handler
+        next();
     } catch (error) {
         res.status(401).json({ error: 'Invalid or expired token' });
     }
-}
+};
 
 export const isAdmin = (req: Request, res: Response, next: NextFunction): void => {
-    const user = (req as any).user; // Get user info from request object
-    if (!user || !user.role || user.role !== 'admin') {
+    const user = (req as any).user;
+
+    if (!user || user.role !== true) {
         res.status(403).json({ error: 'Forbidden: Admin access required' });
         return;
     }
+
     next();
-}
+};

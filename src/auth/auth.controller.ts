@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import { createAdminService, createUserService, userLoginService, verifyCodeService } from './auth.service';
-
+import { createUserService, userLoginService, verifyCodeService, createAdminService } from './auth.service';
 
 // create user controller
 export const registerUserController = async (req: Request, res: Response) => {
@@ -16,11 +15,12 @@ export const registerUserController = async (req: Request, res: Response) => {
     }
 }
 
-// create admin controller
+// Create admin controller
 export const createAdminController = async (req: Request, res: Response) => {
     try {
         const adminData = req.body;
         const { admin, token } = await createAdminService(adminData);
+        
         res.status(201).json({
             message: "Admin created successfully",
             admin: {
@@ -31,14 +31,15 @@ export const createAdminController = async (req: Request, res: Response) => {
                 role: admin.role
             },
             token
-        }); 
-    }catch (error: any) {
+        });
+    } catch (error: any) {
         return res.status(500).json({ error: error.message });
     }
-}
+};
 
-//login user controller
+//login user controller (works for both users and admins)
 export const loginUserController = async (req: Request, res: Response) => {
+
      const { email, password } = req.body;
     if (!email || !password) {
             return res.status(400).json({ error: "Email and password are required" });
