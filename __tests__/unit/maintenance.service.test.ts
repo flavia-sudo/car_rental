@@ -1,6 +1,5 @@
 import db from "../../src/drizzle/db";
 import { MaintenanceTable } from "../../src/drizzle/schema";
-import maintenance from "../../src/maintenance/maintenance.router";
 import { createMaintenanceService, deleteMaintenanceService, getMaintenanceByIdService, getMaintenanceService, updateMaintenanceByIdService } from "../../src/maintenance/maintenance.service";
 
 jest.mock('../../src/Drizzle/db', () => ({
@@ -47,13 +46,13 @@ describe("return null if insert fails", () => {
                 returning: jest.fn().mockResolvedValueOnce([])
             })
         });
-        const maintenace = {
+        const maintenance = {
             carId: 1,
             maintenanceDate: "2023-10-01",
             description: "Oil change and tire rotation",
             cost: '150.00'
         };
-        const result = await createMaintenanceService(maintenace);
+        const result = await createMaintenanceService(maintenance);
         expect(result).toBeNull();
     });
 });
