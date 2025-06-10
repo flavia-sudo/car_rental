@@ -20,9 +20,10 @@ export const getBookingService = async () => {
 
 //get booking by id
 export const getBookingByIdService = async (bookingId: number) => {
-    const result = await db.select().from(BookingsTable)
-        .where(eq(BookingsTable.bookingId, bookingId))
-        return result[0];
+    const result = await db.query.BookingsTable.findFirst({
+        where: eq(BookingsTable.bookingId, bookingId)
+    })
+        return result;
 }
 
 //update booking by id
