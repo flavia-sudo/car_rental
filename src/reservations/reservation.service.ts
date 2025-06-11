@@ -6,11 +6,12 @@ import db from "../drizzle/db";
 //create reservation service
 export const createReservationService = async (reservation: TIReservation) => {
     const inserted = await db.insert(ReservationTable).values(reservation).returning();
-    if (inserted) {
-        return inserted;
+    if (inserted.length > 0) {
+        return inserted[0];
     }
     return null;
 }
+
 
 //get all reservations
 export const getReservationService = async () => {

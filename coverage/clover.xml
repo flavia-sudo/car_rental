@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1749586930727" clover="3.2.0">
-  <project timestamp="1749586930728" name="All files">
-    <metrics statements="199" coveredstatements="182" conditionals="12" coveredconditionals="8" methods="106" coveredmethods="80" elements="317" coveredelements="270" complexity="0" loc="199" ncloc="199" packages="9" files="9" classes="9"/>
+<coverage generated="1749626955221" clover="3.2.0">
+  <project timestamp="1749626955221" name="All files">
+    <metrics statements="172" coveredstatements="164" conditionals="12" coveredconditionals="8" methods="90" coveredmethods="80" elements="274" coveredelements="252" complexity="0" loc="172" ncloc="172" packages="8" files="8" classes="8"/>
     <package name="booking">
       <metrics statements="23" coveredstatements="21" conditionals="3" coveredconditionals="1" methods="13" coveredmethods="10"/>
       <file name="booking.service.ts" path="C:\Users\HP\OneDrive\Desktop\Dri_zzle\src\booking\booking.service.ts">
@@ -90,39 +90,6 @@
         <line num="61" count="1" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
         <line num="75" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="drizzle">
-      <metrics statements="27" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="16" coveredmethods="0"/>
-      <file name="schema.ts" path="C:\Users\HP\OneDrive\Desktop\Dri_zzle\src\drizzle\schema.ts">
-        <metrics statements="27" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="16" coveredmethods="0"/>
-        <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="6" count="8" type="stmt"/>
-        <line num="9" count="8" type="stmt"/>
-        <line num="23" count="8" type="stmt"/>
-        <line num="31" count="8" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="42" count="8" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="52" count="8" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="62" count="8" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="71" count="8" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="82" count="8" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="95" count="8" type="stmt"/>
-        <line num="101" count="8" type="stmt"/>
-        <line num="106" count="8" type="stmt"/>
-        <line num="118" count="8" type="stmt"/>
-        <line num="130" count="8" type="stmt"/>
-        <line num="143" count="8" type="stmt"/>
-        <line num="151" count="8" type="stmt"/>
-        <line num="159" count="8" type="stmt"/>
       </file>
     </package>
     <package name="insurance">
@@ -230,29 +197,29 @@
       </file>
     </package>
     <package name="reservations">
-      <metrics statements="20" coveredstatements="19" conditionals="1" coveredconditionals="1" methods="10" coveredmethods="10"/>
+      <metrics statements="20" coveredstatements="20" conditionals="1" coveredconditionals="1" methods="10" coveredmethods="10"/>
       <file name="reservation.service.ts" path="C:\Users\HP\OneDrive\Desktop\Dri_zzle\src\reservations\reservation.service.ts">
-        <metrics statements="20" coveredstatements="19" conditionals="1" coveredconditionals="1" methods="10" coveredmethods="10"/>
+        <metrics statements="20" coveredstatements="20" conditionals="1" coveredconditionals="1" methods="10" coveredmethods="10"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
         <line num="9" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
         <line num="18" count="2" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
         <line num="23" count="2" type="stmt"/>
-        <line num="26" count="2" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
-        <line num="36" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
       </file>
     </package>
   </project>
