@@ -77,7 +77,7 @@ export const deletePaymentController = async (req: Request, res: Response) => {
         const deleted = await deletePaymentService(paymentId);
         if (deleted) {
             return res.status(204).json({message: "Payment deleted successfully"});
-        }return res.status(400).json({message: "Payment not deleted"});
+        }
     }catch (error: any) {
         return res.status(500).json({error: error.message});
     }

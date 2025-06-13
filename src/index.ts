@@ -11,6 +11,7 @@ import dotenv from "dotenv";
 import user from "./auth/auth.router";
 dotenv.config();
 
+const initializeApp = () => {
 //initialize the app and give access to the application to use express
 const app = express();
 
@@ -32,8 +33,8 @@ user(app);
 app.get('/', (req, res) => {
    res.send('Welcome to the Car Rental API');
 })
-app.use
 
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000');
-})
+return app;
+}
+const app = initializeApp();
+export default app;

@@ -77,7 +77,7 @@ export const deleteMaintenanceController = async (req: Request, res: Response) =
         const deleted = await deleteMaintenanceService(maintenanceId);
         if (deleted) {
             return res.status(204).json({message: "Maintenance deleted successfully"});
-        }return res.status(400).json({message: "Maintenance not deleted"});
+        }
     }catch (error: any) {
         return res.status(500).json({error: error.message});
     }

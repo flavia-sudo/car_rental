@@ -35,7 +35,7 @@ export const getLocationByIdController = async (req: Request, res: Response) => 
     try {
         const locationId = parseInt(req.params.locationId);
         if (isNaN(locationId)) {
-            return res.status(400).json({ error: "Invalid Location ID" });
+            return res.status(400).json({ error: "Invalid location ID" });
         }
         const location = await getLocationByIdService(locationId);
         if (location) {
@@ -77,7 +77,7 @@ export const deleteLocationController = async (req: Request, res: Response) => {
         const deleted = await deleteLocationService(locationId);
         if (deleted) {
             return res.status(204).json({message: "Location deleted successfully"});
-        }return res.status(400).json({message: "Location not deleted"});
+        }
     }catch (error: any) {
         return res.status(500).json({error: error.message});
     }

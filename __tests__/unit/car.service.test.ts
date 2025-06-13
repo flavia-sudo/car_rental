@@ -1,18 +1,52 @@
-import { createCarService, deleteCarService, getCarByIdService, getCarService, updateCarByIdService } from "../../src/cars/car.service";
+import { eq } from "drizzle-orm";
+import { createCarService, deleteCarService, getCarByIdService, getCarService, getCarWithLocationService, updateCarByIdService } from "../../src/cars/car.service";
 import db from "../../src/drizzle/db";
-import { CarTable } from "../../src/drizzle/schema";
+import { CarTable, LocationTable } from "../../src/drizzle/schema";
 
 jest.mock('../../src/Drizzle/db', () => ({
     insert: jest.fn(),
     update: jest.fn(),
     delete: jest.fn(),
+    select: jest.fn(),
+    from: jest.fn(),
     query: {
         CarTable: {
             findFirst: jest.fn(),
             findMany: jest.fn()
         }
     }
+
+    
 }))
+
+
+const mockData = [
+    { 
+        carId: 1,
+        locationId: 10,
+        Location: {
+            carId: 1,
+            carModel: "Toyota",
+            year: "2025-04-03",
+            color: "Blue",
+            rentalRate: 20.0,
+            availability: true,
+            locationId: 10
+        }
+    }
+] 
+
+var mockQueryResult = Promise.resolve(mockData);
+interface MockJoinChain{
+    innerJoin: jest.Mock<MockJoinChain, any>;
+    then: typeof mockQueryResult.then;
+}
+
+const mockJoin: MockJoinChain = {
+    innerJoin: jest.fn(() => mockJoin),
+    then: mockQueryResult.then.bind(mockQueryResult)
+}
+
 
 beforeEach(() => {
     jest.clearAllMocks();
@@ -125,8 +159,56 @@ describe("deleteCarService", () => {
         (db.delete as jest.Mock).mockReturnValue({
             where: jest.fn().mockResolvedValueOnce(undefined)
         })
-        const result = await deleteCarService(1);
+        const result = await deleteCarService(1)
         expect(db.delete).toHaveBeenCalledWith(CarTable)
         expect(result).toBe("Car deleted successfully");
     })
 })
+
+describe("getCarWithLocationService", () => {
+    it("should return a car with location", async () => {
+        (db.select as jest.Mock).mockReturnValueOnce({
+            from: jest.fn().mockReturnValueOnce({
+                innerJoin: jest.fn().mockReturnValueOnce({
+                    limit: jest.fn().mockReturnValueOnce({
+                        then: (cb: any) => Promise.resolve(mockData).then(cb)
+                    })
+                })
+            })
+        });
+        const result = await getCarWithLocationService();
+        expect(result).toEqual(mockData[0]);
+    });
+
+    it("should return null if no car with location is found", async () => {
+        (db.select as jest.Mock).mockReturnValueOnce({
+            from: jest.fn().mockReturnValueOnce({
+                innerJoin: jest.fn().mockReturnValueOnce({
+                    limit: jest.fn().mockReturnValueOnce({
+                        then: (cb: any) => Promise.resolve([]).then(cb)
+                    })
+                })
+            })
+        });
+        const result = await getCarWithLocationService();
+        expect(result).toBeNull();
+    });
+
+    it("should call db.select, from, innerJoin, and limit with correct arguments", async () => {
+        //Arrange
+        const fromMock = jest.fn().mockReturnValue({
+            innerJoin: jest.fn().mockReturnValue({
+                limit: jest.fn().mockReturnValue({
+                    then: (cb: any) => Promise.resolve(mockData).then(cb)
+                })
+            })
+        });
+        (db.select as jest.Mock).mockReturnValue({ from: fromMock });
+        //Act
+        await getCarWithLocationService();
+
+        //Assert
+        expect(db.select).toHaveBeenCalled();
+        expect(fromMock).toHaveBeenCalledWith(CarTable);
+    });
+});

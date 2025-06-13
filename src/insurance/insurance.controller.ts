@@ -77,7 +77,7 @@ export const deleteInsuranceController = async (req: Request, res: Response) => 
         const deleted = await deleteInsuranceService(insuranceId);
         if (deleted) {
             return res.status(204).json({message: "Insurance deleted successfully"});
-        }return res.status(400).json({message: "Insurance not deleted"});
+        }
     }catch (error: any) {
         return res.status(500).json({error: error.message});
     }

@@ -78,7 +78,7 @@ export const deleteCarController = async (req: Request, res: Response) => {
         const deleted = await deleteCarService(carId);
         if (deleted) {
             return res.status(204).json({message: "Car deleted successfully"});
-        }return res.status(400).json({message: "Car not deleted"});
+        }
     }catch (error: any) {
         return res.status(500).json({error: error.message});
     }

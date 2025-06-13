@@ -78,7 +78,7 @@ export const deleteBookingController = async (req: Request, res: Response) => {
         const deleted = await deleteBookingService(bookingId);
         if (deleted) {
             return res.status(204).json({message: "Booking deleted successfully"});
-        }return res.status(400).json({message: "Booking not deleted"});
+        }
     }catch (error: any) {
         return res.status(500).json({error: error.message});
     }
