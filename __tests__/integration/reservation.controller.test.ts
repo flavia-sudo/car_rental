@@ -22,11 +22,14 @@ jest.mock('../../src/Drizzle/db', () => ({
     },
 }));
 // Mocks
-jest.mock("../../src/reservation/reservation.service");
+jest.mock("../../src/reservations/reservation.service");
 
 describe("Reservation Controller", () => {
+    afterEach(() => jest.clearAllMocks());
+
     describe("POST /reservation", () => {
         it("should create a new reservation", async () => {
+            (ReservationService.createReservationService as jest.Mock).mockResolvedValue({ reservationId: 1});
             const response = await request(app).post("/reservation").send({
                 customerId: 1,
                 carId: 1,
@@ -35,7 +38,7 @@ describe("Reservation Controller", () => {
                 returnDate: "2023-10-20"
             });
             expect(response.status).toBe(201);
-            expect(response.body.message).toBe("Reservation created succcessfully");
+            expect(response.body.message).toBe("Reservation created successfully");
         });
 
         it("should return 400 for failed insertion", async() => {
@@ -143,9 +146,22 @@ describe("Reservation Controller", () => {
             (ReservationService.deleteReservationService as jest.Mock).mockResolvedValue(null);
             const response = await request(app).delete("/reservation/999");
             expect(response.status).toBe(404);
-            expect(response.body).toEqual({ error: "Reservation not found" });
+            expect(response.body).toEqual({ message: "Reservation not found" });
         });
 
-        it("should return 400 for invalid ID", as)
-    })
+        it("should return 400 for invalid ID", async () => {
+            (ReservationService.getReservationByIdService as jest.Mock).mockResolvedValue(null);
+            (ReservationService.deleteReservationService as jest.Mock).mockResolvedValue(null);
+            const response = await request(app).delete("/reservation/abc");
+            expect(response.status).toBe(400);
+            expect(response.body).toEqual({ error: "Invalid reservation ID" });
+        });
+
+        it("should return 500 if service throws an error", async () => {
+            (ReservationService.getReservationByIdService as jest.Mock).mockRejectedValue(new Error("Internal Server error"));
+            const response = await request(app).delete("/reservation/1");
+            expect(response.status).toBe(500);
+            expect(response.body).toEqual({ error: "Internal Server error" });
+        });
+    });
 });

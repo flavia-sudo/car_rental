@@ -1,4 +1,4 @@
-import { createCustomerService, deleteCustomerService, getCustomerByIdService, getCustomerService, updateCustomerService } from "../../src/customers/customer.service";
+import { createCustomerService, deleteCustomerService, getCustomerByIdService, getCustomerService, updateCustomerService, getCustomerBookingsService } from "../../src/customers/customer.service";
 import db from "../../src/drizzle/db";
 import { CustomerTable } from "../../src/drizzle/schema";
 
@@ -143,3 +143,26 @@ describe("deleteCustomerService", () => {
         expect(result).toBe("Customer deleted successfully");
     })
 })
+
+// describe("getCustomerBookingsService", () => {
+//     it("should return a customer's bookings", async () => {
+//         const customer = {
+//             customerId: 1,
+//             firstName: 'John',
+//             lastName: 'Doe',
+//             email: 'doe@gmail.com',
+//             phoneNumber: '0987654321',
+//             address: '123 Main St',
+//             password: 'password5600',
+//             role: false,
+//             verificationCode: '123456',
+//             verified: false
+//         };
+//         const bookings = 
+//             { bookingId: 1, carId: 1, rentalStartDate: '2023-01-01', rentalEndDate: '2023-01-06', totalAmount: '150' };
+//         (db.query.CustomerTable.findFirst as jest.Mock).mockResolvedValueOnce(customer);
+//         (db.query.BookingsTable.findFirst as jest.Mock).mockResolvedValueOnce(bookings);
+//         const result = await getCustomerBookingsService(1);
+//         expect(result).toEqual({ ...customer, bookings });
+//     })
+// })

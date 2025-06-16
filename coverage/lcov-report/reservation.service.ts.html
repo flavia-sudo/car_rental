@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">43.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>30/30</span>
+                <span class='fraction'>13/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>8/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,39 +109,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { eq } from "drizzle-orm";
 import { ReservationTable, TIReservation } from "../drizzle/schema";
@@ -149,39 +149,39 @@ import db from "../drizzle/db";
 &nbsp;
 &nbsp;
 //create reservation service
-export const createReservationService = async (reservation: TIReservation) =&gt; {
-    const inserted = await db.insert(ReservationTable).values(reservation).returning();
-    if (inserted.length &gt; 0) {
-        return inserted[0];
+export const createReservationService = <span class="fstat-no" title="function not covered" >async (r</span>eservation: TIReservation) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+    const inserted = <span class="cstat-no" title="statement not covered" >await db.insert(ReservationTable).values(reservation).returning();</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (inserted.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        return inserted[0];</span>
     }
-    return null;
+<span class="cstat-no" title="statement not covered" >    return null;</span>
 }
 &nbsp;
 &nbsp;
 //get all reservations
-export const getReservationService = async () =&gt; {
-    const reservation = await db.query.ReservationTable.findMany();
-    return reservation;
+export const getReservationService = <span class="fstat-no" title="function not covered" >async () =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+    const reservation = <span class="cstat-no" title="statement not covered" >await db.query.ReservationTable.findMany();</span>
+<span class="cstat-no" title="statement not covered" >    return reservation;</span>
 }
 &nbsp;
 //get reservation by id
-export const getReservationByIdService = async (reservationId: number) =&gt; {
-    const reservation = await db.query.ReservationTable.findFirst({
+export const getReservationByIdService = <span class="fstat-no" title="function not covered" >async (r</span>eservationId: number) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+    const reservation = <span class="cstat-no" title="statement not covered" >await db.query.ReservationTable.findFirst({</span>
         where: eq(ReservationTable.reservationId, reservationId)
     });
-    return reservation;
+<span class="cstat-no" title="statement not covered" >    return reservation;</span>
 }
 &nbsp;
 //update reservation by id
-export const updateReservationByIdService = async (reservationId: number, reservation: TIReservation) =&gt; {
-    await db.update(ReservationTable)
-    return "Reservation updated successfully";
+export const updateReservationByIdService = <span class="fstat-no" title="function not covered" >async (r</span>eservationId: number, reservation: TIReservation) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+<span class="cstat-no" title="statement not covered" >    await db.update(ReservationTable)</span>
+<span class="cstat-no" title="statement not covered" >    return "Reservation updated successfully";</span>
 }
 &nbsp;
 //delete reservation by id
-export const deleteReservationService = async (reservationId: number) =&gt; {
-    await db.delete(ReservationTable).where(eq(ReservationTable.reservationId, reservationId));
-    return "Reservation deleted successfully";
+export const deleteReservationService = <span class="fstat-no" title="function not covered" >async (r</span>eservationId: number) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+<span class="cstat-no" title="statement not covered" >    await db.delete(ReservationTable).where(eq(ReservationTable.reservationId, reservationId));</span>
+<span class="cstat-no" title="statement not covered" >    return "Reservation deleted successfully";</span>
 &nbsp;
 }</pre></td></tr></table></pre>
 
@@ -190,7 +190,7 @@ export const deleteReservationService = async (reservationId: number) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-12T05:53:37.538Z
+                at 2025-06-13T09:23:52.039Z
             </div>
         <script src="prettify.js"></script>
         <script>

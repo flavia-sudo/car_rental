@@ -94,7 +94,7 @@ export const deleteCustomerController = async (req: Request, res: Response) => {
         const deleted = await deleteCustomerService(customerId);
         if (deleted) {
             return res.status(204).json({message: "Customer deleted successfully"});
-        }return res.status(400).json({message: "Customer not deleted"});
+        }
     }catch (error: any) {
         return res.status(500).json({error: error.message});
     }

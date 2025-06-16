@@ -19,6 +19,10 @@ export const registerUserController = async (req: Request, res: Response) => {
 export const createAdminController = async (req: Request, res: Response) => {
     try {
         const adminData = req.body;
+        
+        if (!adminData.firstName || !adminData.lastName || !adminData.email || !adminData.password || !adminData.role) {
+            return res.status(400).json({ error: "Missing required admin fields" });
+        }
         const { admin, token } = await createAdminService(adminData);
         
         res.status(201).json({
@@ -59,7 +63,7 @@ export const verifyCodeController = async (req: Request, res: Response) => {
     try {
         const {email, code} = req.body;
         const result = await verifyCodeService(email, code);
-        res.status(200).json({message: result});
+        res.status(200).json({ message: "Account verified successfully" });
     } catch (error: any) {
         res.status(400).json({error: error.message});
     }

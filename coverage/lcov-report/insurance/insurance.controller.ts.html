@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.21% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>41/56</span>
+                <span class='fraction'>55/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.56% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>32/46</span>
+                <span class='fraction'>45/45</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -196,38 +196,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response } from "express";
 import { createInsuranceService, deleteInsuranceService, getInsuranceByIdService, getInsuranceService, updateInsuranceByIdService } from "./insurance.service";
@@ -279,17 +279,17 @@ export const getInsuranceByIdController = async (req: Request, res: Response) =&
 }
 &nbsp;
 // Update insurance by id controller
-export const updateInsuranceController = <span class="fstat-no" title="function not covered" >async (r</span>eq: Request, res: Response) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-        const insuranceId = <span class="cstat-no" title="statement not covered" >parseInt(req.params.insuranceId);</span>
-<span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(insuranceId)) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(400).json({ error: "Invalid insurance ID" });</span>
+export const updateInsuranceController = async (req: Request, res: Response) =&gt; {
+    try {
+        const insuranceId = parseInt(req.params.insuranceId);
+        if (isNaN(insuranceId)) {
+            return res.status(400).json({ error: "Invalid insurance ID" });
         }
-        const insurance = <span class="cstat-no" title="statement not covered" >req.body;</span>
-<span class="cstat-no" title="statement not covered" >        await updateInsuranceByIdService(insuranceId, insurance);</span>
-<span class="cstat-no" title="statement not covered" >        return res.status(200).json({ message: "Insurance updated successfully" });</span>
+        const insurance = req.body;
+        await updateInsuranceByIdService(insuranceId, insurance);
+        return res.status(200).json({ message: "Insurance updated successfully" });
     } catch (error: any) {
-<span class="cstat-no" title="statement not covered" >        return res.status(500).json({ error: error.message });</span>
+        return res.status(500).json({ error: error.message });
     }
 }
 &nbsp;
@@ -302,13 +302,13 @@ export const deleteInsuranceController = async (req: Request, res: Response) =&g
         }
 &nbsp;
         const existingInsurance = await getInsuranceByIdService(insuranceId);
-<span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (!existingInsurance) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(404).json({message: "Insurance not found"});</span>
+        if (!existingInsurance) {
+            return res.status(404).json({message: "Insurance not found"});
         }
-        const deleted = <span class="cstat-no" title="statement not covered" >await deleteInsuranceService(insuranceId);</span>
-<span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (deleted) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(204).json({message: "Insurance deleted successfully"});</span>
-        }<span class="cstat-no" title="statement not covered" >return res.status(400).json({message: "Insurance not deleted"});</span>
+        const deleted = await deleteInsuranceService(insuranceId);
+        if (deleted) {
+            return res.status(204).json({message: "Insurance deleted successfully"});
+        }
     }catch (error: any) {
         return res.status(500).json({error: error.message});
     }
@@ -319,7 +319,7 @@ export const deleteInsuranceController = async (req: Request, res: Response) =&g
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-12T19:17:24.363Z
+                at 2025-06-16T08:36:08.629Z
             </div>
         <script src="../prettify.js"></script>
         <script>
