@@ -1,6 +1,6 @@
 import { createCustomerService, deleteCustomerService, getCustomerByIdService, getCustomerService, updateCustomerService, getCustomerBookingsService } from "../../src/customers/customer.service";
 import db from "../../src/drizzle/db";
-import { CustomerTable } from "../../src/drizzle/schema";
+import { CustomerTable, BookingsTable } from "../../src/drizzle/schema";
 
 
 jest.mock('../../src/Drizzle/db', () => ({
